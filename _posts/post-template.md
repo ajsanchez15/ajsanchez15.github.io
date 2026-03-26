@@ -1,6 +1,6 @@
 ---
 title: 'Post Template: Images, Code, Plots, and Equations'
-date: 2026-01-01
+date: 2026-03-26
 permalink: /posts/2026/01/01/post-template
 tags:
   - template
