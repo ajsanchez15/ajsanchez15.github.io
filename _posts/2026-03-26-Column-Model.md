@@ -8,7 +8,7 @@ tags:
   - Bridges
 ---
 
-This month, I spent a considerable amount of time developing a reinforced concrete column model in openseespy to match the behavior of cyclic tests stored in the PEER structures database. 
+This month, I spent a considerable amount of time developing a reinforced concrete column model in openseespy to match the behavior of cyclic tests stored in the PEER structures database. The goal of this work is to integrate it into a detailed highway bridge model for seismic simulations.
 
 Concrete columns typically have two types of reinforcement, longitudinal and transverse. The former primarily reinforces the column against flexural demands, while the later reinforces the column against shear demands. 
 
@@ -36,32 +36,52 @@ Steel02, which defines a Menegotto-Pinto model[^menegotto1973]in OpenSeesPy, is 
 ![Menegotto-Pinto cyclic steel stress-strain model](/images/RCCOLUMNS/steel.png)
 *Figure: Menegotto-Pinto cyclic stress-strain model for longitudinal reinforcement (Monti et al., 1993).[^monti1993]*
 
-When plotting the performance of the element against expirmental test results for well confined columns, model results match the expiermental force-displacment history well. 
+When plotting the performance of the element against expirmental test results for well confined columns, model results approximate the expiermental force-displacment history reasonably well. 
 
-**IMAGE HERE**
+![Force-displacement hysteresis for well-confined column lehman1015](/images/RCCOLUMNS/lehman1015.png)
+*Figure: Comparison of model (blue) and experimental (black) force-displacement response for well-confined column specimen lehman1015 using Steel02 + Concrete04 (Lehman et al., 1998).[^lehman1998]*
 
 However, when considering the performance of the element against expirmental test results for poorly confined columns, model results do not match the expiermental force-displacment history, as the concrete in the column seems to fail too early.
 
-**IMAGE HERE**
+![Force-displacement hysteresis for poorly-confined column chai3](/images/RCCOLUMNS/chai3.png)
+*Figure: Comparison of model (blue) and experimental (black) force-displacement response for poorly-confined column specimen chai3 using Steel02 + Concrete04. The model fails to capture the strength degradation seen in the experimental data (Chai et al., 1991).[^chai1991]*
 
 This behavior is fixed by chaging the concrete in the model to Concrete02, which defines a Kent-Scott-Park[^kent1971]<sup>,</sup>[^karsan1969] object that has much higher epsilon_cu, with a linear decline in strength after peak compressive strength (still using the Mander parameters for fcc[^mander1988]), and some residual strength after crushing (0.1 fcc) defined by Zhou and Kunnath (2022).[^zhou2022] 
 
-**IMAGE HERE**
+![Concrete02 stress-strain response for inner core fiber](/images/RCCOLUMNS/concrete02.png)
+*Figure: Concrete02 stress-strain response for the inner core fiber of a Reinforced Concrete Column, showing the Kent-Scott-Park softening branch and residual compressive strength after crushing.*
 
 Zhou and Kunnath (2022)[^zhou2022] provided a comprehesive column element for nonductile bridge columns, focuing on defining capactity limit states. Following their recomendations, the column is rebuilt with 4 Gauss-Lobbotto intergation points.
+
+![Force-displacement hysteresis for chai3 with Steel02 and Concrete02](/images/RCCOLUMNS/Chai3_s02.png)
+*Figure: Comparison of model (blue) and experimental (black) force-displacement response for poorly-confined column specimen chai3 using Steel02 + Concrete02. Switching to Concrete02 improves the match by extending the concrete crushing strain (Chai et al., 1991).[^chai1991]*
+
+
+![Distributed-plasticity finite element scheme with bond slip and shear components](/images/RCCOLUMNS/FE_scheme.png)
+*Figure: Distributed-plasticity column model with force-based fiber beam-column element for flexure, aggregated elastic shear at each integration point, and a zero-length section for bond slip at the base (Berry & Eberhard, 2007).[^berry2007]*
 
 Additonally, the steel model is changed to capture degredation of the column near failure. Zhou and Kunnath (2022)[^zhou2022] defined a custom material model using the Hystertic material in openseespy, which is one potential option. This model captures strain hardening and degredation on the tensile side, and buckling effects on the compression side. The buckling effects for lightly reinforced concrete columns are significant, as there is a larger effective length present for the rebar.
 
 ![Zhou and Kunnath hysteretic steel model](/images/RCCOLUMNS/Kunnath_tension.png)
 *Figure: Hysteretic steel model capturing tension degradation effects for lightly reinforced columns (Zhou & Kunnath, 2022).*
+
+
 ![Zhou and Kunnath hysteretic steel model](/images/RCCOLUMNS/Kunnath_compression.png)
 *Figure: Hysteretic steel model capturing buckling effects for lightly reinforced columns (Zhou & Kunnath, 2022).*
 
-One potential concern for this application is the incycle deteriation of the column, which 
 
+![Force-displacement hysteresis for NandP5 with HystereticSM and Concrete02](/images/RCCOLUMNS/NandP5_hystereticSM.png)
+*Figure: Comparison of model (blue) and experimental (black) force-displacement response for poorly-confined column specimen NandP5 using HystereticSM + Concrete02 (Ranf et al., 2006).[^ranf2006]*
 
-Another option is to provide MinMax wrappers to the steel02 material. This wrapper essentially acts like an "off" switch once the steel reaches perscribed strain in either compression or tension. This "fracture behavior" is seen in some of the later cycles, which  allows degredation to occur in the model.
+Potential concerns for this application include the incycle deteriation of the column, which could lead to strength losses larger than desired at large deformations, and buckling occuring too early in the displacment history. 
 
+![Force-displacement hysteresis for chai3 with HystereticSM and Concrete02](/images/RCCOLUMNS/HystereticSM_concrete02.png)
+*Figure: Comparison of model (blue) and experimental (black) force-displacement response for poorly-confined column specimen chai3 using HystereticSM + Concrete02, capturing in-cycle strength degradation and rebar buckling effects (Chai et al., 1991).[^chai1991]*
+
+Another option is to provide MinMax wrappers to the steel02 material. This wrapper essentially acts like an "off" switch once the steel reaches perscribed strain in either compression or tension. This "fracture behavior" is seen in some of the later cycles, which allows degredation to occur in the model.
+
+![Force-displacement hysteresis for NandP5 with Steel02 MinMax wrapper and Concrete02](/images/RCCOLUMNS/NandP5_wrapper.png)
+*Figure: Comparison of model (blue) and experimental (black) force-displacement response for poorly-confined column specimen NandP5 using Steel02 with MinMax wrapper + Concrete02, simulating fracture behavior at prescribed strain limits (Ranf et al., 2006).[^ranf2006]*
 
 ---
 
@@ -71,6 +91,9 @@ Another option is to provide MinMax wrappers to the steel02 material. This wrapp
 [^kent1971]: Kent DC, Park R. Flexural members with confined concrete. *Journal of the Structural Division, ASCE* 1971; 97(7): 1969–1990.
 [^karsan1969]: Karsan ID, Jirsa JO. Behavior of concrete under compressive loading. *Journal of the Structural Division, ASCE* 1969; 95(12): 2543–2564.
 [^ochshorn]: Ochshorn J. *Structural Elements for Architects and Builders*, Third Edition. Chapter 5: Reinforced Concrete Columns. <https://jonochshorn.com/structuralelements/book/5.06-columns.html>
+[^ranf2006]: Ranf RT, Eberhard MO, Stanton JF. Effects of displacement history on failure of lightly confined bridge columns. *ACI Special Publications* 2006; 236: 23.
+[^chai1991]: Chai YH, Priestley MJN, Seible F. *Flexural Retrofit of Circular Reinforced Concrete Bridge Columns by Steel Jacketing*. Report No. SSRP91/06. Department of Applied Mechanics and Engineering Sciences, University of California, San Diego, La Jolla, CA; 1991.
+[^lehman1998]: Lehman DE, Calderone AJ, Moehle JP. Behavior and Design of Slender Columns Subjected to Lateral Loading. *Proceedings of the Sixth U.S. National Conference on Earthquake Engineering*. Oakland, CA: Earthquake Engineering Research Institute; 1998.
 [^menegotto1973]: Menegotto M, Pinto E. Method of analysis for cyclically loaded reinforced concrete plane frames including changes in geometry and non-elastic behavior of elements under combined normal force and bending. *Proceedings, IABSE Symposium*. Lisbon, Portugal; 1973.
 [^monti1993]: Monti G, Spacone E, Filippou FC. *Model for anchored reinforcing bars under seismic excitations*. Report No. UCB/EERC-93/08. Earthquake Engineering Research Center, University of California, Berkeley; December 1993.
 
