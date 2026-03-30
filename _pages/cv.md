@@ -11,49 +11,41 @@ redirect_from:
 
 Education
 ======
-* Ph.D., Civil Engineering, University of Washington, Seattle, WA — August 2024–Present
+* Ph.D. (In Progress) , Civil Engineering, University of Washington, Seattle, WA — August 2024–Present
 * B.S., Engineering, Harvey Mudd College, Claremont, CA — May 2024
 
 Research Experience
 ======
-* August 2024–Present: Research Assistant
-  * University of Washington
+* Research Assistant @ University of Washington, August 2024–Present
   * Analysis using OpenSeesPy bridge models to develop seismic fragility estimates for highway bridges in WA state in the event of a Cascadia Subduction Zone (CSZ) rupture
   * Collaboration with multidisciplinary research teams to consider regional impacts of tsunami inundation, soil liquification, and structural collapses following a CSZ event
 
-* March 2022–May 2024: De Pietro Fellowship in Civil Engineering
-  * Harvey Mudd College
+* De Pietro Fellowship in Civil Engineering @ Harvey Mudd College, March 2022–May 2024
   * Lead a team of undergraduates conducting performance based testing and analysis of large concrete and embankment dams for seismic risk mitigation
   * Consulted for entities such as Stantec, Southern California Edison, Tacoma Power, Gannett Fleming, and the California Department of Water Resources
   * Developed novel analysis techniques for Flow Induced Monitoring that focuses on unique applications of systems theory and dynamics to predict broadband response characteristics
 
-* January 2022–May 2022: Transdermal Skin Transport Lab Researcher
-  * Harvey Mudd College
+* Transdermal Skin Transport Lab Researcher @ Harvey Mudd College, January 2022–May 2022
   * Modeled viscoelastic response of skin under uniaxial strain with a team of undergraduate research students
   * Characterized circuitry for a mechanical device that performs in vivo studies of changing skin properties under uniaxial extension
 
-* June 2021–January 2022: E4 Lab Researcher
-  * Harvey Mudd College
+* E4 Lab Researcher @ Harvey Mudd College, June 2021–January 2022
   * Developed an educational research study deployed in the engineering department at Harvey Mudd College in an individual research project
   * Published a paper presented at the 2022 American Society for Engineering Education conference
 
 Teaching Experience
 ======
-* August 2023–December 2024: Teaching Assistant — Dynamics of Elastic Systems
-  * Harvey Mudd College
+* Teaching Assistant (Dynamics of Elastic Systems) @ Harvey Mudd College, August 2023–December 2024
   * Tutoring and grading students in an upper division technical elective in dynamics, covering free and forced responses of single and multi-degree of freedom systems
 
-* January 2023–March 2023: Grader — Engineering Mathematics
-  * Harvey Mudd College
+* Grader (Engineering Mathematics) @ Harvey Mudd College, January 2023–March 2023
   * Graded for a course on Engineering Mathematics, which focuses on applications of differential equations and linear algebra to computational problems solved using MATLAB
 
-* August 2021–December 2022: E4 — Engineering Design & Manufacturing Laboratory Proctor
-  * Harvey Mudd College
+* Engineering Design & Manufacturing Laboratory Proctor (E4) @ Harvey Mudd College, August 2021–December 2022
   * Tutored students in different engineering skills, including Solidworks CAD and machining
   * Advised students in developing their semester long clinic project deliverable
 
-* August 2022–May 2024: Tutor
-  * Homework Hotline, Harvey Mudd College
+* Tutor @ Homework Hotline, Harvey Mudd College, August 2022–May 2024
   * Worked as a K-12 tutor at Harvey Mudd's Homework Hotline, which is a free tutoring service primarily serving the Los Angeles Metropolitan area
 
 Skills
@@ -75,10 +67,10 @@ Publications and Conference Presentations
 
 Technical Projects
 ======
-* August 2023–May 2024: Cowbell Labs — Harvey Mudd Engineering Clinic (Senior Team Member)
+* Senior Team Member (Harvey Mudd Engineering Clinic) @ Cowbell Labs, August 2023–May 2024
   * Designed a low cost mass flow controller for methane emissions during diffusion modeling tests
 
-* January 2023–May 2023: Casa Herrera Inc. — Harvey Mudd Engineering Clinic (Junior Team Member)
+* Junior Team Member (Harvey Mudd Engineering Clinic) @ Casa Herrera Inc., January 2023–May 2023
   * Developed a novel tortilla manufacturing technique for one of the leading industry entities in order to change industry standard design process with severe downtime issue
   * Characterized forced vibration inputs to a rigid blade for material separation
 
