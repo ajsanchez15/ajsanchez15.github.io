@@ -11,4 +11,6 @@ Hello! My name is Andres Sanchez, and I am currently a PhD student and Research 
 
 In addition, I have conducted many experimental dynamic and seismic performance studies on large concrete and embankment dams. Through the course of this work, I have collaborated with and presented to Tacoma Power, Gannett Fleming, Stantec, Southern California Edison, and the California Department of Water Resources in the fields of structural dynamics and seismic risk mitigation, and have prepared a two-hour workshop at the United States Society of Dams Annual Conference, where I am a four-time presenter. 
 
+For more information on the Cascadia Subduction Zone rupture scenarios and other seismic hazards, please check out the USGS fact sheet linked [here](https://pubs.usgs.gov/fs/2025/3050/fs20253050.pdf).
+
 
